@@ -9,9 +9,12 @@ dependencies:
   - pytorch-cuda=11.8
   - pip
   - pip:
-      - open3d
-      - gymnasium
-      - stable-baselines3[extra]
-      - tensorboard
-      - numpy
-      - pyyaml
+        - open3d==0.18.0
+        - gymnasium
+        - stable-baselines3[extra]
+        - tensorboard
+        - numpy
+        - pyyaml
+        - wandb
+        - sb3_contrib
+
