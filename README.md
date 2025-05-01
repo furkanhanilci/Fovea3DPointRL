@@ -54,3 +54,13 @@ python -m pcdet.datasets.kitti.kitti_dataset \
 
 # 5) train PPO agent (2 M steps default)
 python agents/train_ppo.py
+
+Fovea3DPointRL/
+├─ agents/           # RL training scripts (SB3 PPO baseline)
+├─ envs/
+│   ├─ lidar_fovea_env.py   # Gymnasium wrapper w/ PV-RCNN inside
+│   └─ crop_ops.py          # Open3D GPU ROI utilities
+├─ third_party/      # submodules: OpenPCDet, Lidar-gym, SB3
+├─ configs/          # pv_rcnn_fovea.yaml, ppo_fovea.yaml …
+└─ docs/             # installation, benchmarks, figures
+
