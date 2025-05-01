@@ -1,0 +1,6 @@
+open3d==0.18.0
+gymnasium
+stable-baselines3[extra]
+tensorboard
+numpy
+pyyaml
