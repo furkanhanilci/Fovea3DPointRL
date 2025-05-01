@@ -4,12 +4,4 @@ Fovea3DPointRL is a research prototype that brings together foveated attention, 
 
 ## Repository Structure
 
-Fovea3DPointRL/
-├── agents/                 # RL training scripts (Stable-Baselines3 PPO baseline)
-├── envs/
-│   ├── lidar_fovea_env.py  # Gymnasium wrapper embedding PV-RCNN
-│   └── crop_ops.py         # Open3D GPU ROI utilities
-├── third_party/            # Git submodules: OpenPCDet, Lidar-gym, SB3
-├── configs/                # pv_rcnn_fovea.yaml, ppo_fovea.yaml, etc.
-└── docs/                   # Installation notes, dataset prep, benchmarks, figures
-
+Fovea3DPointRL/ ├── agents/ # RL training scripts (Stable-Baselines3 PPO baseline) ├── envs/ │ ├── lidar_fovea_env.py # Gymnasium wrapper embedding PV-RCNN │ └── crop_ops.py # Open3D GPU ROI utilities ├── third_party/ # Git submodules: OpenPCDet, Lidar-gym, SB3 ├── configs/ # pv_rcnn_fovea.yaml, ppo_fovea.yaml, etc. └── docs/ # Installation notes, dataset prep, benchmarks, figures
