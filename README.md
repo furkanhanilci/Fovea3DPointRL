@@ -54,7 +54,7 @@ python -m pcdet.datasets.kitti.kitti_dataset \
 
 # 5) train PPO agent (2 M steps default)
 python agents/train_ppo.py
-
+```
 Fovea3DPointRL/
 ├─ agents/           # RL training scripts (SB3 PPO baseline)
 ├─ envs/
