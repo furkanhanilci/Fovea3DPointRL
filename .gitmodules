@@ -1,0 +1,9 @@
+[submodule "third_party/OpenPCDet"]
+	path = third_party/OpenPCDet
+	url = https://github.com/open-mmlab/OpenPCDet
+[submodule "third_party/Lidar-gym"]
+	path = third_party/Lidar-gym
+	url = https://github.com/Zdeeno/Lidar-gym
+[submodule "third_party/stable-baselines3"]
+	path = third_party/stable-baselines3
+	url = https://github.com/DLR-RM/stable-baselines3
