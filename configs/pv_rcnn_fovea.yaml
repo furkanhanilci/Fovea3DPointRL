@@ -1,0 +1,15 @@
+# PV-RCNN configuration adapted for foveated ROI input
+MODEL:
+  NAME: "PVRCNN"
+  CLS_FC: [256, 256]
+  ROI_HEAD:
+    NAME: "PVRCNNHead"
+    CLS_FC: [128, 128]
+DATA_CONFIG:
+  POINT_CLOUD_RANGE: [0, -40, -3, 70.4, 40, 1]
+  VOXEL_SIZE: [0.2, 0.2, 0.2]
+  FOVEA_VOXEL_SIZE: [0.1, 0.1, 0.2]
+TRAIN:
+  BATCH_SIZE: 4
+  EPOCHS: 20
+  LEARNING_RATE: 0.001
