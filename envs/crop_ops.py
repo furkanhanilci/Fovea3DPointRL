@@ -1,26 +1,10 @@
-import argparse
-from stable_baselines3 import PPO
-from envs.lidar_fovea_env import LidarFoveaEnv
-import time
+import open3d as o3d
+import numpy as np
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', type=str, required=True)
-    parser.add_argument('--det_cfg', type=str, default='configs/pv_rcnn_fovea.yaml')
-    parser.add_argument('--ckpt', type=str, default='checkpoints/pv_rcnn.pth')
-    args = parser.parse_args()
-
-    env = LidarFoveaEnv(det_cfg=args.det_cfg, ckpt=args.ckpt)
-    model = PPO.load(args.model_path)
-
-    obs, info = env.reset()
-    done = False
-    start = time.time()
-    frame_count = 0
-    while not done:
-        action, _ = model.predict(obs, deterministic=True)
-        obs, reward, done, info = env.step(action)
-        frame_count += 1
-    elapsed = time.time() - start
-    fps = frame_count / elapsed
-    print(f"Evaluation done: {frame_count} frames in {elapsed:.2f}s ({fps:.2f} FPS)")
+def crop_points_o3d(points_xyz: np.ndarray, center: np.ndarray, half_side: float) -> np.ndarray:
+    pc = o3d.t.geometry.PointCloud(o3d.core.Tensor(points_xyz, device="CUDA:0"))
+    min_bound = o3d.core.Tensor(center - half_side, device="CUDA:0")
+    max_bound = o3d.core.Tensor(center + half_side, device="CUDA:0")
+    aabb = o3d.core.AxisAlignedBoundingBox(min_bound, max_bound)
+    idx = pc.get_point_indices_within_bounding_box(aabb)
+    return points_xyz[idx.cpu().numpy()]
