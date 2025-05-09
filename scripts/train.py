@@ -4,7 +4,7 @@ import argparse
 import os
 import yaml
 import wandb
-from sb3_contrib.common.wandb_callback import WandbCallback
+import sb3_contrib.common.wandb_callback
 from stable_baselines3 import PPO
 from envs.lidar_fovea_env import LidarFoveaEnv
 

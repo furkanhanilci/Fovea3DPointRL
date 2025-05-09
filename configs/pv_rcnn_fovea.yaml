@@ -1,15 +1,36 @@
-# PV-RCNN configuration adapted for foveated ROI input
-MODEL:
-  NAME: "PVRCNN"
-  CLS_FC: [256, 256]
-  ROI_HEAD:
-    NAME: "PVRCNNHead"
-    CLS_FC: [128, 128]
+# configs/pv_rcnn_fovea.yaml
+#
+# PV-RCNN configuration adapted for foveated attention.
+# DATA_CONFIG tells OpenPCDet where to find your KITTI data/info files.
+
 DATA_CONFIG:
+  DATA_ROOT: "../../data/KITTI"
+  INFO_PATH:
+    train: "data/kitti_infos_train.pkl"
+    val:   "data/kitti_infos_val.pkl"
   POINT_CLOUD_RANGE: [0, -40, -3, 70.4, 40, 1]
-  VOXEL_SIZE: [0.2, 0.2, 0.2]
-  FOVEA_VOXEL_SIZE: [0.1, 0.1, 0.2]
+  VOXEL_SIZE: [0.075, 0.075, 0.2]
+  FOVEA_VOXEL_SIZE: [0.05, 0.05, 0.1]
+  NUM_POINT_FEATURES: 4
+
+MODEL:
+  NAME: PVRCNN
+  CLASS_NAMES: ["Car", "Pedestrian", "Cyclist"]
+  BACKBONE:
+    TYPE: SECOND
+    LAYERS: [3, 5, 5]
+  HEAD:
+    FC_CHANNELS: [512, 512]
+
 TRAIN:
-  BATCH_SIZE: 4
+  BATCH_SIZE: 2
   EPOCHS: 20
+  OPTIMIZER: adam
   LEARNING_RATE: 0.001
+  WEIGHT_DECAY: 0.01
+  LR_STEP: [16, 19]
+
+TEST:
+  BATCH_SIZE: 4
+  NMS_THRESH: 0.7
+  SCORE_THRESH: 0.1
